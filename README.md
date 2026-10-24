@@ -1,4 +1,4 @@
-# Armazém Acaé
+# Armazém MAcaé
 
 Base inicial de desenvolvimento web com HTML, CSS, JavaScript e dados em JSON.
 Inclui dois servidores locais alternativos: Node.js e Java. A página é um ponto
