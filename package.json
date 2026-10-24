@@ -1,0 +1,20 @@
+{
+  "name": "armazemacae",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Base web do Armazém Acaé em HTML, CSS, JavaScript, JSON e Java.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node --watch scripts/server.mjs",
+    "start": "node scripts/server.mjs",
+    "dev:java": "java server/DevServer.java",
+    "check": "node --check scripts/server.mjs && node --check scripts/build.mjs && node --check public/app.js",
+    "test": "node --test tests/*.test.mjs",
+    "test:java": "TEST_RUNTIME=java node --test tests/server.test.mjs",
+    "build": "node scripts/build.mjs",
+    "export": "node scripts/build.mjs --export-root"
+  }
+}
