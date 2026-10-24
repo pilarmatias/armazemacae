@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="pt-BR" data-standalone="true">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#234b3e">
+    <meta name="description" content="O primeiro espaço digital do projeto Armazém Acaé. Uma base para criar, organizar e desenvolver novas ideias.">
+    <title>Armazém Acaé · Projeto inicial</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2232%22%20fill%3D%22%23234b3e%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2244%22%20fill%3D%22%23f7f6ef%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2249%22%20font-style%3D%22italic%22%20letter-spacing%3D%22-6%22%3Ea.%3C%2Ftext%3E%3C%2Fsvg%3E%0A" type="image/svg+xml">
+    <style>
+@layer reset, base, layout, components, responsive;
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body, h1, h2, h3, p, ol { margin: 0; }
+  button, input { font: inherit; }
+  a { color: inherit; }
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --paper: #f7f6ef;
+    --ink: #203d33;
+    --muted: #66726a;
+    --line: #d8ddd1;
+    --card: #eeefe5;
+    --accent: #dce6bc;
+    --focus: #88751e;
+    font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #172a23;
+    --ink: #f1f1df;
+    --muted: #b6c0b3;
+    --line: #3c5144;
+    --card: #21382d;
+    --accent: #dce6bc;
+    --focus: #dfc96e;
+  }
+  body { background: var(--paper); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  ::selection { background: #cbdca8; color: #203d33; }
+  a { text-decoration: none; }
+  button { cursor: pointer; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline-offset: 5px; }
+  h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; }
+  em { font-weight: 400; }
+  [hidden] { display: none !important; }
+}
+
+@layer layout {
+  .wrap { width: min(1240px, calc(100% - 96px)); margin-inline: auto; }
+  .site-header { min-height: 112px; display: flex; align-items: center; gap: 28px; border-bottom: 1px solid var(--line); }
+  .site-header nav { display: flex; align-items: center; gap: 36px; margin-left: auto; }
+  .hero { display: grid; grid-template-columns: 1.12fr 1fr; gap: 64px; padding-block: 78px 80px; align-items: center; }
+  .foundation { padding-block: 72px 88px; }
+  .section-heading { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 24px; align-items: start; margin-bottom: 44px; }
+  .section-heading > p:last-child { color: var(--muted); max-width: 280px; padding-top: 7px; }
+  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .next-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding-block: 72px 80px; border-top: 1px solid var(--line); }
+  .site-footer { border-top: 1px solid var(--line); display: flex; align-items: center; gap: 32px; min-height: 132px; }
+}
+
+@layer components {
+  .skip-link { position: absolute; z-index: 5; top: -100px; left: 16px; background: var(--ink); color: var(--paper); padding: 12px 20px; }
+  .skip-link:focus { top: 16px; }
+  .brand { display: inline-flex; align-items: center; gap: 12px; font-size: 20px; letter-spacing: -.7px; white-space: nowrap; }
+  .brand strong { font-weight: 700; }
+  .brand-mark { display: inline-flex; align-items: center; justify-content: center; width: 41px; height: 41px; color: #f5f4e7; background: #234b3e; font: italic 33px/.8 Georgia, serif; padding-bottom: 6px; border-radius: 50%; letter-spacing: -4px; padding-right: 4px; }
+  nav a, .back-top { font-size: 13px; font-weight: 500; }
+  nav a { text-underline-offset: 6px; }
+  nav a:hover, .back-top:hover { text-decoration: underline; }
+  .nav-arrow { margin-left: 8px; width: 18px; height: 18px; vertical-align: middle; }
+  .theme-toggle { width: 38px; height: 38px; flex: 0 0 auto; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); }
+  .theme-toggle:hover { background: var(--card); }
+  .theme-toggle svg { width: 19px; height: 19px; }
+  .sun-icon, [data-theme="dark"] .moon-icon { display: none; }
+  [data-theme="dark"] .sun-icon { display: block; }
+  .eyebrow { display: flex; gap: 9px; align-items: center; font-size: 10px; letter-spacing: 1.8px; font-weight: 600; text-transform: uppercase; }
+  .status-dot { height: 6px; width: 6px; background: #7b8c47; border-radius: 50%; flex-shrink: 0; }
+  h1 { font-size: clamp(44px, 5.1vw, 69px); line-height: 1.08; letter-spacing: -2.8px; margin-block: 25px; }
+  h1 em { font-size: .94em; }
+  .hero-description { font-size: 15px; color: var(--muted); max-width: 390px; line-height: 1.85; }
+  .button { display: inline-flex; gap: 40px; justify-content: space-between; align-items: center; color: #f8f7ee; background: #234b3e; padding: 16px 21px; margin-top: 30px; font-size: 12px; border: 1px solid #234b3e; transition: background .15s; }
+  .button:hover { background: #32614f; }
+  .button-arrow { width: 20px; height: 20px; flex-shrink: 0; }
+  .hero-note { font-size: 10px; color: var(--muted); margin-top: 14px; }
+  .hero-art { background: #234b3e; color: #eef1cc; min-height: 480px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 28px; }
+  .art-topline, .art-bottomline { display: flex; justify-content: space-between; position: relative; z-index: 2; font-size: 9px; line-height: 1.6; letter-spacing: 1.6px; }
+  .art-topline { border-bottom: 1px solid #ffffff30; padding-bottom: 18px; }
+  .art-bottomline { align-items: end; }
+  .art-word { z-index: 2; position: absolute; left: 50%; top: 43%; transform: translate(-50%, -50%); font: italic clamp(100px, 11vw, 154px)/1 Georgia, serif; letter-spacing: -12px; padding-right: 14px; }
+  .art-word > span { font: 11px Arial, sans-serif; letter-spacing: 0; position: absolute; top: 35px; right: -4px; }
+  .art-orbit { border: 1px solid #c7d39a47; width: 340px; height: 430px; position: absolute; border-radius: 50%; left: 50%; top: 51%; transform: translate(-50%, -50%) rotate(35deg); }
+  .orbit-two { transform: translate(-50%, -50%) rotate(-35deg); }
+  .art-circle { position: absolute; height: 96px; width: 96px; background: #ccd8a3; border-radius: 50%; bottom: 67px; right: 63px; opacity: .9; }
+  .art-arrow { width: 43px; height: 43px; }
+  .section-divider { padding-block: 17px; border-block: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; font-size: 9px; font-weight: 500; letter-spacing: 1.8px; }
+  .section-divider > span:last-child { font-size: 18px; }
+  h2 { font-size: clamp(30px, 3.2vw, 43px); line-height: 1.12; letter-spacing: -1.3px; }
+  .section-heading > .eyebrow { padding-top: 10px; }
+  .content-status { color: var(--muted); padding-block: 16px; font-size: 14px; }
+  .feature-card { padding: 26px 26px 31px; background: var(--card); border: 1px solid var(--line); }
+  .feature-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 44px; }
+  .feature-number { color: var(--muted); font-size: 10px; letter-spacing: 1px; }
+  .feature-symbol { display: grid; place-items: center; width: 32px; height: 32px; color: var(--ink); font: 27px/1 Georgia, serif; }
+  .feature-card h3 { font-size: 25px; letter-spacing: -.5px; margin-bottom: 13px; }
+  .feature-card p { color: var(--muted); font-size: 13px; line-height: 1.8; max-width: 270px; }
+  .next-intro > h2 { margin-block: 22px; }
+  .next-intro > p:last-child { color: var(--muted); font-size: 14px; max-width: 320px; }
+  .step-list { list-style: none; padding: 0; counter-reset: step; }
+  .step-list li { counter-increment: step; display: grid; grid-template-columns: 37px 1fr; padding-block: 21px; border-bottom: 1px solid var(--line); gap: 16px; }
+  .step-list li:first-child { padding-top: 0; }
+  .step-list li::before { content: "0" counter(step); color: var(--muted); font-size: 11px; padding-top: 5px; }
+  .step-list h3 { font: 500 15px/1.6 Arial, Helvetica, sans-serif; margin-bottom: 5px; }
+  .step-list p { color: var(--muted); font-size: 13px; line-height: 1.8; }
+  .footer-brand { font-size: 17px; }
+  .footer-brand .brand-mark { width: 32px; height: 32px; font-size: 26px; padding-bottom: 4px; }
+  .site-footer > p { color: var(--muted); font-size: 11px; margin-left: auto; }
+  .back-top { font-size: 11px; white-space: nowrap; }
+  .back-top span { margin-left: 12px; }
+}
+
+@layer responsive {
+  @media (min-width: 1440px) { .hero { gap: 100px; } }
+  @media (max-width: 1000px) {
+    .wrap { width: calc(100% - 64px); }
+    .hero { gap: 32px; padding-block: 56px; }
+    h1 { letter-spacing: -2px; }
+    .hero-art { min-height: 430px; padding: 22px; }
+    .art-orbit { width: 270px; height: 360px; }
+    .art-circle { height: 75px; width: 75px; right: 35px; }
+    .art-word { letter-spacing: -9px; }
+    .section-heading { grid-template-columns: 1fr 2fr; }
+    .section-heading > p:last-child { grid-column: 2; max-width: 380px; }
+    .next-section { gap: 45px; }
+    .feature-card { padding: 20px; }
+    .feature-card h3 { font-size: 23px; }
+  }
+  @media (max-width: 700px) {
+    .wrap { width: calc(100% - 40px); }
+    .site-header { min-height: 85px; gap: 14px; flex-wrap: wrap; padding-block: 18px; }
+    .brand { font-size: 18px; gap: 9px; }
+    .brand-mark { width: 34px; height: 34px; font-size: 28px; }
+    .site-header nav { gap: 20px; order: 3; width: 100%; justify-content: space-between; padding-top: 8px; }
+    .site-header nav a { font-size: 12px; }
+    .theme-toggle { margin-left: auto; }
+    .hero { grid-template-columns: 1fr; gap: 38px; padding-block: 42px; }
+    .eyebrow { font-size: 9px; letter-spacing: 1.3px; }
+    h1 { font-size: clamp(42px, 8.8vw, 60px); letter-spacing: -1.8px; margin-block: 22px; }
+    .hero-description { font-size: 14px; max-width: 430px; }
+    .hero-art { min-height: 380px; }
+    .art-word { font-size: 132px; }
+    .art-circle { right: 70px; bottom: 55px; }
+    .art-orbit { width: 300px; height: 340px; }
+    .section-divider { font-size: 8px; letter-spacing: 1.2px; }
+    .foundation { padding-block: 48px; }
+    .section-heading { display: block; margin-bottom: 28px; }
+    .section-heading > .eyebrow { padding: 0; margin-bottom: 20px; }
+    .section-heading > p:last-child { margin-top: 20px; font-size: 14px; }
+    h2 { font-size: 35px; }
+    .feature-grid { grid-template-columns: 1fr; gap: 14px; }
+    .feature-card { padding: 24px; }
+    .feature-top { margin-bottom: 24px; }
+    .feature-card p { max-width: 100%; }
+    .next-section { grid-template-columns: 1fr; gap: 35px; padding-block: 45px 52px; }
+    .site-footer { flex-wrap: wrap; gap: 20px; padding-block: 28px; }
+    .site-footer > p { order: 3; width: 100%; margin: 0; }
+    .back-top { margin-left: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) { :root { scroll-behavior: auto; } * { transition: none !important; } }
+}
+
+</style>
+    <script>document.addEventListener('DOMContentLoaded', () => {
+const themeButton = document.querySelector('.theme-toggle');
+const themeKey = 'armazemacae-theme';
+
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  themeButton.setAttribute('aria-pressed', String(theme === 'dark'));
+  themeButton.setAttribute('aria-label', theme === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro');
+}
+
+let savedTheme;
+try {
+  savedTheme = localStorage.getItem(themeKey);
+} catch {
+  // The page also works when the browser does not permit local storage.
+}
+const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+applyTheme(savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : preferredTheme);
+themeButton.hidden = false;
+themeButton.addEventListener('click', () => {
+  const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  applyTheme(nextTheme);
+  try {
+    localStorage.setItem(themeKey, nextTheme);
+  } catch {
+    // Theme changes remain available for the current visit.
+  }
+});
+
+function makeElement(tag, className, text) {
+  const element = document.createElement(tag);
+  if (className) element.className = className;
+  if (text !== undefined) element.textContent = text;
+  return element;
+}
+
+function isContentItem(item) {
+  return item !== null && typeof item === 'object'
+    && typeof item.title === 'string' && item.title.trim().length > 0
+    && typeof item.description === 'string' && item.description.trim().length > 0;
+}
+
+async function loadContent() {
+  const featureGrid = document.querySelector('#feature-grid');
+  const stepList = document.querySelector('#step-list');
+  const status = document.querySelector('#content-status');
+  try {
+    const useEmbeddedContent = location.protocol === 'file:'
+      || document.documentElement.dataset.standalone === 'true';
+    let content;
+    if (useEmbeddedContent) {
+      const embeddedContent = document.getElementById('site-data');
+      if (!embeddedContent) throw new Error('Embedded site content is missing');
+      content = JSON.parse(embeddedContent.textContent);
+    } else {
+      const response = await fetch(new URL('./data/site.json', document.baseURI));
+      if (!response.ok) throw new Error(`Content request failed: ${response.status}`);
+      content = await response.json();
+    }
+    if (!Array.isArray(content.features) || content.features.length === 0 || !content.features.every(isContentItem)
+      || !Array.isArray(content.nextSteps) || content.nextSteps.length === 0 || !content.nextSteps.every(isContentItem)) {
+      throw new Error('Invalid site content');
+    }
+
+    const cards = content.features.map((feature, index) => {
+      const card = makeElement('article', 'feature-card');
+      const top = makeElement('div', 'feature-top');
+      top.append(makeElement('span', 'feature-number', String(index + 1).padStart(2, '0')));
+      const symbol = makeElement('span', 'feature-symbol', typeof feature.symbol === 'string' ? feature.symbol : '+');
+      symbol.setAttribute('aria-hidden', 'true');
+      top.append(symbol);
+      card.append(top, makeElement('h3', '', feature.title), makeElement('p', '', feature.description));
+      return card;
+    });
+
+    const steps = content.nextSteps.map((step) => {
+      const item = makeElement('li');
+      const text = makeElement('div');
+      text.append(makeElement('h3', '', step.title), makeElement('p', '', step.description));
+      item.append(text);
+      return item;
+    });
+
+    featureGrid.replaceChildren(...cards);
+    stepList.replaceChildren(...steps);
+    status.hidden = true;
+  } catch (error) {
+    status.textContent = 'Não foi possível carregar os detalhes do projeto. Atualize a página para tentar novamente.';
+    console.error('Não foi possível carregar o conteúdo:', error);
+  } finally {
+    featureGrid.setAttribute('aria-busy', 'false');
+    stepList.setAttribute('aria-busy', 'false');
+  }
+}
+
+loadContent();
+
+});</script>
+    <script id="site-data" type="application/json">{"name":"Armazém Acaé","stage":"Projeto inicial","features":[{"title":"Uma identidade","description":"Um primeiro espaço para apresentar o Armazém Acaé. Cores, textos e estilo podem mudar para refletir sua visão.","symbol":"◒"},{"title":"Boas ideias","description":"Organize aqui o que deseja compartilhar. Esta base pode dar lugar à sua história, a um catálogo ou a novos conteúdos.","symbol":"✳"},{"title":"Novos caminhos","description":"Comece pelo essencial e acrescente novas páginas e funcionalidades conforme o projeto ganhar forma.","symbol":"+"}],"nextSteps":[{"title":"Definir o propósito","description":"Escolha o que este espaço deve oferecer e para quem ele está sendo construído."},{"title":"Trazer seu conteúdo","description":"Substitua os textos de demonstração pela sua história, informações e imagens."},{"title":"Construir a próxima versão","description":"Transforme suas prioridades em novas páginas, recursos e experiências."}]}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header wrap">
+      <a class="brand" href="#projeto" aria-label="Armazém Acaé, início">
+        <span class="brand-mark" aria-hidden="true">a.</span>
+        <span>armazém <strong>acaé</strong></span>
+      </a>
+      <nav aria-label="Navegação principal">
+        <a href="#estrutura">A base</a>
+        <a href="#proximos-passos">Próximos passos <svg class="nav-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Ativar tema escuro" aria-pressed="false" hidden>
+        <svg class="moon-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.3 14.6A8.7 8.7 0 0 1 9.4 3.7a8.7 8.7 0 1 0 10.9 10.9Z"/></svg>
+        <svg class="sun-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.7"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+      </button>
+    </header>
+
+    <main id="conteudo">
+      <section class="hero wrap" id="projeto" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Um projeto em seu primeiro capítulo</p>
+          <h1 id="hero-title">Uma ideia.<br>Um espaço.<br><em>Um novo começo.</em></h1>
+          <p class="hero-description">O Armazém Acaé começa por aqui. Uma base simples para dar forma à sua ideia e construir, aos poucos, o que vem a seguir.</p>
+          <a class="button" href="#estrutura">Conhecer a base <svg class="button-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m6 6 12 12M6 18h12V6"/></svg></a>
+          <p class="hero-note">Versão inicial · Conteúdo de demonstração</p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-topline"><span>ARMAZÉM ACAÉ</span><span>CAPÍTULO 01</span></div>
+          <div class="art-orbit orbit-one"></div>
+          <div class="art-orbit orbit-two"></div>
+          <div class="art-circle"></div>
+          <span class="art-word">acaé</span>
+          <div class="art-bottomline"><span>IDEIAS QUE<br>GANHAM ESPAÇO.</span><svg class="art-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M6 18 18 6M6 6h12v12"/></svg></div>
+        </div>
+      </section>
+
+      <div class="section-divider wrap"><span>DO PRIMEIRO PASSO AO QUE VEM DEPOIS</span><span aria-hidden="true">↓</span></div>
+
+      <section class="foundation wrap" id="estrutura" aria-labelledby="foundation-title">
+        <div class="section-heading">
+          <p class="eyebrow">01 / A base</p>
+          <h2 id="foundation-title">Espaço para<br><em>suas possibilidades.</em></h2>
+          <p>Este é o ponto de partida. O conteúdo e a direção do projeto podem evoluir junto com a sua ideia.</p>
+        </div>
+        <p class="content-status" role="status" id="content-status">Carregando o conteúdo do projeto…</p>
+        <div class="feature-grid" id="feature-grid" aria-busy="true"></div>
+        <noscript><p class="content-status">Ative o JavaScript para carregar os detalhes do projeto. O restante desta página continua disponível.</p></noscript>
+      </section>
+
+      <section class="next-section wrap" id="proximos-passos" aria-labelledby="next-title">
+        <div class="next-intro">
+          <p class="eyebrow">02 / O próximo capítulo</p>
+          <h2 id="next-title">Vamos dar<br><em>o próximo passo?</em></h2>
+          <p>Uma boa construção começa com escolhas simples. Aqui estão algumas para continuar.</p>
+        </div>
+        <ol class="step-list" id="step-list" aria-busy="true"></ol>
+      </section>
+    </main>
+
+    <footer class="site-footer wrap">
+      <a class="brand footer-brand" href="#projeto"><span class="brand-mark" aria-hidden="true">a.</span><span>armazém <strong>acaé</strong></span></a>
+      <p>Um espaço em construção, com intenção.</p>
+      <a class="back-top" href="#projeto">Voltar ao início <span aria-hidden="true">↑</span></a>
+    </footer>
+  </body>
+</html>

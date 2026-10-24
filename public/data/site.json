@@ -1,0 +1,35 @@
+{
+  "name": "Armazém Acaé",
+  "stage": "Projeto inicial",
+  "features": [
+    {
+      "title": "Uma identidade",
+      "description": "Um primeiro espaço para apresentar o Armazém Acaé. Cores, textos e estilo podem mudar para refletir sua visão.",
+      "symbol": "◒"
+    },
+    {
+      "title": "Boas ideias",
+      "description": "Organize aqui o que deseja compartilhar. Esta base pode dar lugar à sua história, a um catálogo ou a novos conteúdos.",
+      "symbol": "✳"
+    },
+    {
+      "title": "Novos caminhos",
+      "description": "Comece pelo essencial e acrescente novas páginas e funcionalidades conforme o projeto ganhar forma.",
+      "symbol": "+"
+    }
+  ],
+  "nextSteps": [
+    {
+      "title": "Definir o propósito",
+      "description": "Escolha o que este espaço deve oferecer e para quem ele está sendo construído."
+    },
+    {
+      "title": "Trazer seu conteúdo",
+      "description": "Substitua os textos de demonstração pela sua história, informações e imagens."
+    },
+    {
+      "title": "Construir a próxima versão",
+      "description": "Transforme suas prioridades em novas páginas, recursos e experiências."
+    }
+  ]
+}
