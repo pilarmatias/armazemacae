@@ -45,7 +45,7 @@ public class DevServer {
             }));
             server.start();
             String displayHost = host.contains(":") ? "[" + host + "]" : host;
-            System.out.println("Armazém Acaé: http://" + displayHost + ":" + server.getAddress().getPort());
+            System.out.println("Armazém da Construção: http://" + displayHost + ":" + server.getAddress().getPort());
         } catch (Exception error) {
             System.err.println("Não foi possível iniciar o servidor: " + error.getMessage());
             System.exit(1);

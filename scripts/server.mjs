@@ -91,7 +91,7 @@ server.on('error', error => {
 });
 
 server.listen(port, host, () => {
-  console.log(`Armazém Acaé: http://${host}:${server.address().port}`);
+  console.log(`Armazém da Construção: http://${host}:${server.address().port}`);
 });
 
 for (const signal of ['SIGINT', 'SIGTERM']) {

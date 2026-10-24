@@ -1,35 +1,53 @@
 {
-  "name": "Armazém Acaé",
-  "stage": "Projeto inicial",
-  "features": [
-    {
-      "title": "Uma identidade",
-      "description": "Um primeiro espaço para apresentar o Armazém Acaé. Cores, textos e estilo podem mudar para refletir sua visão.",
-      "symbol": "◒"
-    },
-    {
-      "title": "Boas ideias",
-      "description": "Organize aqui o que deseja compartilhar. Esta base pode dar lugar à sua história, a um catálogo ou a novos conteúdos.",
-      "symbol": "✳"
-    },
-    {
-      "title": "Novos caminhos",
-      "description": "Comece pelo essencial e acrescente novas páginas e funcionalidades conforme o projeto ganhar forma.",
-      "symbol": "+"
-    }
+  "name": "Armazém da Construção",
+  "contact": {
+    "address": "Av. Nossa Senhora da Glória, 1200 - Centro, Macaé - RJ",
+    "phone": "+5522996143362",
+    "landline": "+552220212185",
+    "email": "contato@armazemdaconstrucao.com.br"
+  },
+  "heroImage": "https://files.cdn-files-a.com/uploads/12491987/1200_gi-6ada028c2cc1e.jpg?format=avif",
+  "categories": [
+    { "name": "Cimento e Argamassa", "symbol": "▤", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada05de6fc60.jpg?format=avif" },
+    { "name": "Tijolos e Blocos", "symbol": "▥", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada05e22de2e.jpg?format=avif" },
+    { "name": "Areia e Brita", "symbol": "◌", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada05e0814d7.jpg?format=avif" },
+    { "name": "Pisos e Revestimentos", "symbol": "▦", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada05d89ce1c.jpg?format=avif" },
+    { "name": "Tintas e Acessórios", "symbol": "◒", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada05d718ebc.jpg?format=avif" },
+    { "name": "Hidráulica", "symbol": "◎", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02b59bd84.jpg?format=avif" },
+    { "name": "Elétrica", "symbol": "⌁", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02ba6567c.jpg?format=avif" },
+    { "name": "Ferragens e Fixação", "symbol": "⌘", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02bfe749d.jpg?format=avif" },
+    { "name": "Ferramentas", "symbol": "⚒", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02bd7a0ae.jpg?format=avif" },
+    { "name": "Telhas e Coberturas", "symbol": "⌂", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02c289c86.jpg?format=avif" }
   ],
-  "nextSteps": [
-    {
-      "title": "Definir o propósito",
-      "description": "Escolha o que este espaço deve oferecer e para quem ele está sendo construído."
-    },
-    {
-      "title": "Trazer seu conteúdo",
-      "description": "Substitua os textos de demonstração pela sua história, informações e imagens."
-    },
-    {
-      "title": "Construir a próxima versão",
-      "description": "Transforme suas prioridades em novas páginas, recursos e experiências."
-    }
+  "products": [
+    { "id": "tijolo-baiano-8-furos", "name": "Tijolo Baiano 8 Furos", "category": "Tijolos e Blocos", "unit": "unidade", "brand": "Olaria Cerâmica", "status": "Disponível", "price": 0.95, "symbol": "▥", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada05e22de2e.jpg?format=avif" },
+    { "id": "areia-media-ensacada-20kg", "name": "Areia Média Ensacada 20kg", "category": "Areia e Brita", "unit": "saco", "brand": "Jundu", "status": "Disponível", "price": 4.5, "symbol": "◌", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada05e0814d7.jpg?format=avif" },
+    { "id": "cimento-cp-ii-50kg", "name": "Cimento CP II 50kg", "category": "Cimento e Argamassa", "unit": "saco", "brand": "Votoran", "status": "Disponível", "price": 32.9, "symbol": "▤", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada05de6fc60.jpg?format=avif" },
+    { "id": "rejunte-acrilico-branco-1kg", "name": "Rejunte Acrílico Branco 1kg", "category": "Pisos e Revestimentos", "unit": "pacote", "brand": "Quartzolit", "status": "Disponível", "price": 12.5, "symbol": "▦", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada05dc1c613.jpg?format=avif" },
+    { "id": "piso-ceramico-bege-60x60", "name": "Piso Cerâmico Bege 60x60cm", "category": "Pisos e Revestimentos", "unit": "caixa (2,5m²)", "brand": "Eliane", "status": "Disponível", "price": 89.9, "symbol": "▦", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada05d89ce1c.jpg?format=avif" },
+    { "id": "tinta-acrilica-branca-fosca-18l", "name": "Tinta Acrílica Branca Fosca 18L", "category": "Tintas e Acessórios", "unit": "lata", "brand": "Suvinil", "status": "Disponível", "price": 289.9, "symbol": "◒", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada05d718ebc.jpg?format=avif" },
+    { "id": "telha-fibrocimento-244", "name": "Telha de Fibrocimento 2,44 x 1,10 m", "category": "Telhas e Coberturas", "unit": "unidade", "brand": "Brasilit", "status": "Disponível", "price": 129.9, "symbol": "⌂", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02c289c86.jpg?format=avif" },
+    { "id": "parafuso-madeira-40x40", "name": "Parafuso para Madeira 4,0 x 40 mm - Caixa 500 un", "category": "Ferragens e Fixação", "unit": "caixa com 500 unidades", "brand": "Vonder", "status": "Disponível", "price": 39.9, "symbol": "⌘", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02bfe749d.jpg?format=avif" },
+    { "id": "parafusadeira-sem-fio-12v", "name": "Parafusadeira Sem Fio 12 V", "category": "Ferramentas", "unit": "unidade", "brand": "Vonder", "status": "Disponível", "price": 349, "symbol": "⚒", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02bd7a0ae.jpg?format=avif" },
+    { "id": "disjuntor-monopolar-25a", "name": "Disjuntor Monopolar 25A", "category": "Elétrica", "unit": "unidade", "brand": "Steck", "status": "Disponível", "price": 19.9, "symbol": "⌁", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02ba6567c.jpg?format=avif" },
+    { "id": "fio-eletrico-25-rolo-100m", "name": "Fio Elétrico 2,5 mm² - Rolo 100 m", "category": "Elétrica", "unit": "rolo de 100 m", "brand": "Sil", "status": "Disponível", "price": 219, "symbol": "⌁", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02b7de03b.jpg?format=avif" },
+    { "id": "caixa-dagua-1000l", "name": "Caixa d'Água Polietileno 1000 L", "category": "Hidráulica", "unit": "unidade", "brand": "Fortlev", "status": "Disponível", "price": 649, "symbol": "◎", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02b59bd84.jpg?format=avif" },
+    { "id": "tubo-pvc-soldavel-25mm", "name": "Tubo PVC Soldável 25 mm - Barra 6 m", "category": "Hidráulica", "unit": "barra de 6 m", "brand": "Tigre", "status": "Disponível", "price": 78.9, "symbol": "◎", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02b1cdf6f.jpg?format=avif" },
+    { "id": "rolo-la-antigota-23cm", "name": "Rolo de Lã Antigota 23 cm", "category": "Tintas e Acessórios", "unit": "unidade", "brand": "Atlas", "status": "Disponível", "price": 27.5, "symbol": "◒", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02addc8ac.jpg?format=avif" },
+    { "id": "tinta-acrilica-premium-branca-18l", "name": "Tinta Acrílica Premium Branco 18 L", "category": "Tintas e Acessórios", "unit": "lata de 18 L", "brand": "Suvinil", "status": "Disponível", "price": 289, "symbol": "◒", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02ac37c7a.jpg?format=avif" },
+    { "id": "rejunte-flexivel-5kg", "name": "Rejunte Flexível 5 kg", "category": "Pisos e Revestimentos", "unit": "unidade", "brand": "Quartzolit", "status": "Disponível", "price": 34.9, "symbol": "▦", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02a896ba1.jpg?format=avif" },
+    { "id": "porcelanato-acetinado-80x80", "name": "Porcelanato Acetinado 80x80 cm", "category": "Pisos e Revestimentos", "unit": "m²", "brand": "Eliane", "status": "Disponível", "price": 89.9, "symbol": "▦", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02a6f09f7.jpg?format=avif" },
+    { "id": "brita-numero-1", "name": "Brita Nº 1", "category": "Areia e Brita", "unit": "m³ (caçamba)", "brand": "Pedreira Regional", "status": "Disponível", "price": 155, "symbol": "◌", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02a4475a5.jpg?format=avif" },
+    { "id": "areia-media-lavada", "name": "Areia Média Lavada", "category": "Areia e Brita", "unit": "m³ (caçamba)", "brand": "Jazida Regional", "status": "Disponível", "price": 139, "symbol": "◌", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada02a1adfe5.jpg?format=avif" },
+    { "id": "bloco-concreto-14x19x39", "name": "Bloco de Concreto 14x19x39 cm", "category": "Tijolos e Blocos", "unit": "unidade", "brand": "Prisma", "status": "Disponível", "price": 3.2, "symbol": "▥", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada029eeed49.jpg?format=avif" },
+    { "id": "tijolo-baiano-9-furos", "name": "Tijolo Baiano 9 Furos", "category": "Tijolos e Blocos", "unit": "milheiro", "brand": "Olaria Regional", "status": "Sob encomenda", "price": 890, "symbol": "▥", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada029ba4a70.jpg?format=avif" },
+    { "id": "argamassa-ac-ii-interna-20kg", "name": "Argamassa AC-II Interna 20 kg", "category": "Cimento e Argamassa", "unit": "saco de 20 kg", "brand": "Quartzolit", "status": "Disponível", "price": 24.9, "symbol": "▤", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada029927d26.jpg?format=avif" },
+    { "id": "cimento-portland-cp-ii-z-50kg", "name": "Cimento Portland CP II-Z 50 kg", "category": "Cimento e Argamassa", "unit": "saco de 50 kg", "brand": "Votoran", "status": "Disponível", "price": 42.9, "symbol": "▤", "image": "https://files.cdn-files-a.com/uploads/12491987/800_gi-6ada0296ba183.jpg?format=avif" }
+  ],
+  "offers": [
+    { "productId": "rejunte-acrilico-branco-1kg", "discount": 20, "oldPrice": 12.5, "price": 9.99, "validUntil": "31/12/2026" },
+    { "productId": "areia-media-ensacada-20kg", "discount": 14, "oldPrice": 4.5, "price": 3.89, "validUntil": "15/11/2026" },
+    { "productId": "tijolo-baiano-8-furos", "discount": 17, "oldPrice": 0.95, "price": 0.79, "validUntil": "15/12/2026" },
+    { "productId": "cimento-cp-ii-50kg", "discount": 12, "oldPrice": 32.9, "price": 28.9, "validUntil": "30/11/2026" }
   ]
 }

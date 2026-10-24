@@ -30,7 +30,7 @@ before(async () => {
     child.stderr.on('data', data => { output += data; });
     child.stdout.on('data', data => {
       output += data;
-      const address = output.match(/Armazém Acaé: (http:\/\/127\.0\.0\.1:\d+)/);
+      const address = output.match(/Armazém da Construção: (http:\/\/127\.0\.0\.1:\d+)/);
       if (address) {
         base = address[1];
         finish();
@@ -69,6 +69,26 @@ test('CSS, JavaScript e JSON são servidos com conteúdo e MIME corretos', async
   }
 });
 
+test('catálogo da loja sincroniza com o HTML independente', async () => {
+  const [pageResponse, dataResponse] = await Promise.all([
+    fetch(base),
+    fetch(`${base}/data/site.json`),
+  ]);
+  const page = await pageResponse.text();
+  const content = await dataResponse.json();
+  const embedded = page.match(/<script id="site-data" type="application\/json">([\s\S]*?)<\/script>/);
+  assert.ok(embedded, 'HTML independente deve conter dados embutidos');
+  assert.deepEqual(JSON.parse(embedded[1]), content);
+  assert.match(page, /Armazém da Construção/);
+  assert.match(page, /Produtos para obra/);
+  assert.equal(content.products.length, 23);
+  assert.equal(new Set(content.products.map(product => product.id)).size, content.products.length);
+  assert.equal(content.categories.length, 10);
+  assert.equal(content.offers.length, 4);
+  assert.ok(content.products.every(product =>
+    Number.isFinite(product.price) && product.price > 0 && product.image.startsWith('https://')));
+});
+
 test('HEAD retorna os cabeçalhos sem corpo', async () => {
   const response = await fetch(base, { method: 'HEAD' });
   assert.equal(response.status, 200);
@@ -96,9 +116,17 @@ test('arquivos do repositório e caminhos codificados não escapam de public', a
   }
 });
 
-test('links simbólicos para fora de public não expõem arquivos', async () => {
+test('links simbólicos para fora de public não expõem arquivos', async (context) => {
   const link = resolve(root, 'public', `escape-test-${runtime}.txt`);
-  await symlink(resolve(root, 'README.md'), link);
+  try {
+    await symlink(resolve(root, 'README.md'), link);
+  } catch (error) {
+    if (['EPERM', 'EACCES', 'ENOTSUP'].includes(error.code)) {
+      context.skip('Criação de links simbólicos não permitida neste ambiente.');
+      return;
+    }
+    throw error;
+  }
   try {
     const response = await fetch(`${base}/escape-test-${runtime}.txt`);
     assert.equal(response.status, 404);

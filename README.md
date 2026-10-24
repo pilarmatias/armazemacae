@@ -1,20 +1,26 @@
-# Armazém MAcaé
+# Armazém da Construção
 
-Base inicial de desenvolvimento web com HTML, CSS, JavaScript e dados em JSON.
-Inclui dois servidores locais alternativos: Node.js e Java. A página é um ponto
-de partida editável; ainda não implementa catálogo comercial, pedidos ou pagamentos.
+Vitrine responsiva em português para uma loja local de materiais de construção em
+Macaé, feita com HTML, CSS, JavaScript e dados em JSON. O catálogo, as categorias,
+as ofertas e os contatos foram adaptados a partir do site de referência fornecido.
+Preços e disponibilidade podem mudar e devem ser confirmados com a loja. A lista
+de orçamento funciona no navegador; não há checkout, pagamento ou envio automático
+de pedidos.
 
 ## Abrir sem instalar nada
 
 Abra o arquivo **`index.html` da raiz do projeto** por duplo clique. Ele contém
-o HTML, o CSS, o JavaScript e os dados em um só arquivo, funcionando sem internet,
-Node ou Java. Essa é uma cópia pronta para visualização.
+o HTML, o CSS, o JavaScript e os dados em um só arquivo, sem exigir Node ou Java.
+As fotos ilustrativas são carregadas de serviços externos e precisam de conexão
+com a internet; sem conexão, o catálogo e a lista continuam disponíveis com
+fontes locais legíveis e símbolos no lugar das fotos de produto. A interface usa
+Codec Pro quando essa fonte está instalada no dispositivo e Arial como alternativa.
 
 Para editar os fontes, use a pasta `public/`. Seu `index.html` também pode ser
 aberto diretamente, desde que `app.js` e `styles.css` permaneçam ao lado dele.
-Nesse modo, usa os dados iniciais embutidos no HTML. Para atualizar a cópia
-independente com alterações nos fontes ou em `public/data/site.json`, execute
-`npm run export` e reabra o `index.html` da raiz.
+Nesse modo, usa o catálogo embutido no HTML. Para atualizar a cópia independente
+com alterações nos fontes ou em `public/data/site.json`, execute `npm run export`
+e reabra o `index.html` da raiz.
 
 Baixe o projeto pelo GitHub: na branch que contém estes arquivos, escolha
 **Code → Download ZIP**, extraia a pasta e abra o `index.html` da raiz. Links
@@ -63,10 +69,10 @@ de desenvolvimento; a saída estática é a opção prevista para hospedagem do 
 | Arquivo | Uso |
 | --- | --- |
 | `index.html` | Cópia independente, pronta para abrir por duplo clique |
-| `public/index.html` | Estrutura e conteúdo inicial da página |
-| `public/styles.css` | Cores, tipografia, temas e layout responsivo |
-| `public/app.js` | Interações no navegador e leitura do JSON |
-| `public/data/site.json` | Conteúdo editável dos componentes dinâmicos |
+| `public/index.html` | Estrutura da vitrine, catálogo e lista de orçamento |
+| `public/styles.css` | Identidade visual e layout responsivo |
+| `public/app.js` | Busca, categorias, lista e cópia local do orçamento |
+| `public/data/site.json` | Produtos, fotos, categorias, ofertas e contato editáveis |
 | `scripts/server.mjs` | Servidor Node e rota de diagnóstico |
 | `server/DevServer.java` | Servidor alternativo em Java |
 | `tests/server.test.mjs` | Testes HTTP dos dois servidores |
@@ -88,6 +94,11 @@ npm run build
 porta temporária e verificam HTML, CSS, JavaScript, JSON, métodos HTTP, arquivos
 inexistentes e proteção contra leitura de arquivos fora de `public/`. O comando
 `test:java` exige o JDK e executa os mesmos testes usando o servidor Java.
+
+Os filtros e a lista funcionam no navegador; a ação "Copiar lista" prepara um
+texto para compartilhar manualmente. O botão do WhatsApp abre uma conversa com
+a loja. O site não envia pedido nem dado pessoal automaticamente; confirme
+estoque, preços, marcas, especificações e condições com a equipe.
 
 Enquanto um servidor estiver ligado, `GET /api/health` retorna um JSON com
 `status: "ok"`, o projeto e o runtime em uso. A página também precisa entregar
