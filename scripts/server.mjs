@@ -31,14 +31,16 @@ function insideRoot(path) {
 
 const server = createServer(async (request, response) => {
   const head = request.method === 'HEAD';
-  function send(status, body, type = 'text/plain; charset=utf-8') {
-    response.writeHead(status, {
+  function send(status, body, type = 'text/plain; charset=utf-8', headers = {}) {
+    const responseHeaders = {
       'Content-Type': type,
-      'Content-Length': Buffer.byteLength(body),
       'Cache-Control': 'no-store',
       'X-Content-Type-Options': 'nosniff',
-    });
-    response.end(head ? undefined : body);
+      ...headers,
+    };
+    if (status !== 304) responseHeaders['Content-Length'] = Buffer.byteLength(body);
+    response.writeHead(status, responseHeaders);
+    response.end(head || status === 304 ? undefined : body);
   }
 
   if (request.method !== 'GET' && !head) {
@@ -68,11 +70,25 @@ const server = createServer(async (request, response) => {
       return;
     }
     const file = await realpath(requestedPath);
-    if (!insideRoot(file) || !(await stat(file)).isFile()) {
+    const fileStat = await stat(file);
+    if (!insideRoot(file) || !fileStat.isFile()) {
       send(404, 'Página não encontrada.');
       return;
     }
-    send(200, await readFile(file), types[extname(file)] || 'application/octet-stream');
+    const lastModified = fileStat.mtime.toUTCString();
+    const ifModifiedSince = request.headers['if-modified-since'];
+    if (typeof ifModifiedSince === 'string'
+      && Date.parse(ifModifiedSince) >= Math.floor(fileStat.mtimeMs / 1000) * 1000) {
+      send(304, '', types[extname(file)] || 'application/octet-stream', {
+        'Cache-Control': 'no-cache',
+        'Last-Modified': lastModified,
+      });
+      return;
+    }
+    send(200, await readFile(file), types[extname(file)] || 'application/octet-stream', {
+      'Cache-Control': 'no-cache',
+      'Last-Modified': lastModified,
+    });
   } catch (error) {
     if (error instanceof URIError) {
       send(400, 'Caminho inválido.');

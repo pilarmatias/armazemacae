@@ -7,6 +7,12 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
+import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.concurrent.Executors;
 
@@ -115,8 +121,29 @@ public class DevServer {
             }
             String filename = target.getFileName().toString();
             String extension = filename.substring(filename.lastIndexOf('.') + 1).toLowerCase(java.util.Locale.ROOT);
+            String contentType = CONTENT_TYPES.getOrDefault(extension, "application/octet-stream");
+            Instant modified = Files.getLastModifiedTime(realTarget).toInstant().truncatedTo(ChronoUnit.SECONDS);
+            String lastModified = DateTimeFormatter.RFC_1123_DATE_TIME.format(modified.atZone(ZoneOffset.UTC));
+            String ifModifiedSince = exchange.getRequestHeaders().getFirst("If-Modified-Since");
+            if (ifModifiedSince != null) {
+                try {
+                    Instant since = ZonedDateTime.parse(ifModifiedSince, DateTimeFormatter.RFC_1123_DATE_TIME).toInstant();
+                    if (!modified.isAfter(since)) {
+                        respond(exchange, 304, contentType, new byte[0], Map.of(
+                            "Cache-Control", "no-cache",
+                            "Last-Modified", lastModified
+                        ));
+                        return;
+                    }
+                } catch (DateTimeParseException ignored) {
+                    // Invalid conditional headers are ignored.
+                }
+            }
             byte[] body = Files.readAllBytes(realTarget);
-            respond(exchange, 200, CONTENT_TYPES.getOrDefault(extension, "application/octet-stream"), body);
+            respond(exchange, 200, contentType, body, Map.of(
+                "Cache-Control", "no-cache",
+                "Last-Modified", lastModified
+            ));
         } catch (IOException error) {
             // The client may disconnect while a local file is being sent.
             System.err.println("Falha ao atender requisição: " + error.getMessage());
@@ -128,9 +155,20 @@ public class DevServer {
     }
 
     private static void respond(HttpExchange exchange, int status, String contentType, byte[] body) throws IOException {
+        respond(exchange, status, contentType, body, Map.of());
+    }
+
+    private static void respond(
+        HttpExchange exchange, int status, String contentType, byte[] body, Map<String, String> headers
+    ) throws IOException {
         exchange.getResponseHeaders().set("Content-Type", contentType);
         exchange.getResponseHeaders().set("X-Content-Type-Options", "nosniff");
         exchange.getResponseHeaders().set("Cache-Control", "no-store");
+        headers.forEach((name, value) -> exchange.getResponseHeaders().set(name, value));
+        if (status == 304) {
+            exchange.sendResponseHeaders(status, -1);
+            return;
+        }
         if (exchange.getRequestMethod().equals("HEAD")) {
             exchange.getResponseHeaders().set("Content-Length", Integer.toString(body.length));
             exchange.sendResponseHeaders(status, -1);

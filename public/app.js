@@ -44,11 +44,12 @@ async function loadContent() {
   const stepList = document.querySelector('#step-list');
   const status = document.querySelector('#content-status');
   try {
-    const useEmbeddedContent = location.protocol === 'file:'
+    const embeddedContent = document.getElementById('site-data');
+    const useEmbeddedContent = Boolean(embeddedContent)
+      || location.protocol === 'file:'
       || document.documentElement.dataset.standalone === 'true';
     let content;
     if (useEmbeddedContent) {
-      const embeddedContent = document.getElementById('site-data');
       if (!embeddedContent) throw new Error('Embedded site content is missing');
       content = JSON.parse(embeddedContent.textContent);
     } else {
