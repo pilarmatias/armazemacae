@@ -76,6 +76,19 @@ test('HEAD retorna os cabeçalhos sem corpo', async () => {
   assert.equal(await response.text(), '');
 });
 
+test('arquivos estáticos permitem revalidar cache sem reenviar o conteúdo', async () => {
+  const response = await fetch(`${base}/styles.css`);
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get('cache-control'), 'no-cache');
+  const lastModified = response.headers.get('last-modified');
+  assert.ok(lastModified);
+
+  const cached = await fetch(`${base}/styles.css`, { headers: { 'if-modified-since': lastModified } });
+  assert.equal(cached.status, 304);
+  assert.equal(await cached.text(), '');
+  assert.equal(cached.headers.get('last-modified'), lastModified);
+});
+
 test('arquivos inexistentes e diretórios não viram páginas válidas', async () => {
   for (const path of ['/nao-existe', '/data/']) {
     const response = await fetch(`${base}${path}`);
